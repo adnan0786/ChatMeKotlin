@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.example.chatmekotlin.MessageActivity" />
+
+        <variable
+            name="hisImage"
+            type="String" />
+
+        <variable
+            name="online"
+            type="String" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MessageActivity">
+
+        <include
+            android:id="@+id/messageToolbar"
+            layout="@layout/message_toolbar"
+            bind:activity="@{activity}"
+            bind:hisImage="@{hisImage}"
+            bind:online="@{online}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messageRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/lottieAnimation"
+            android:layout_below="@+id/messageToolbar" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimation"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/msgData"
+            android:layout_marginStart="5dp"
+            android:visibility="invisible"
+            bind:lottie_autoPlay="true"
+            bind:lottie_loop="true"
+            bind:lottie_rawRes="@raw/typing_animation"
+            bind:lottie_repeatCount="20" />
+
+        <LinearLayout
+
+            android:id="@+id/msgData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/messageLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.8"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/btnDataSend"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ic_file" />
+
+                <EditText
+                    android:id="@+id/msgText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:background="@drawable/message_edittext_background"
+                    android:hint="Write message.."
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"
+                    android:scrollbars="vertical"
+                    android:text="" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/btnSend"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginEnd="5dp"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_send" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
